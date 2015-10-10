@@ -1,11 +1,4 @@
-var app = angular.module('pomodous',[ ]);
-
-app.config(['$routeProvider',function($routeProvider){
-    $routeProvider.when('/',{
-        templateUrl:'home',
-        controller:'homeC'
-    })
-}]);
+var app = angular.module('pomodousTODOList',[ ]);
 
 app.controller('homeC',function($scope){
 
