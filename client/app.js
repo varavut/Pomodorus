@@ -1,4 +1,4 @@
-angular.module('pomodorus',['angular-meteor']).controller('taskController',function($scope){
+angular.module('pomodorus',['angular-meteor']).controller('taskController',function($scope, $meteor){
     $scope.list = [ ];//Meteor.collection('list');
     $scope.join = function(){
         console.log($scope.name + $scope.todo);
@@ -6,6 +6,9 @@ angular.module('pomodorus',['angular-meteor']).controller('taskController',funct
         $scope.name = "";
         $scope.todo = "";
     }
+
+    $meteor.subscribe("times");
+    $scope.times = $meteor.collection(Times);
 });
 
 
