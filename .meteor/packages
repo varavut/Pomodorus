@@ -22,3 +22,7 @@ angular
 accounts-ui
 momentjs:moment
 reactive-var
+angular:angular-route
+accounts-facebook
+accounts-password
+urigo:angular-blaze-template
