@@ -1,6 +1,6 @@
 body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    color:white;
+    color:dimgrey;
 }
 .listC {
     max-width:800px;
@@ -8,15 +8,23 @@ body {
     padding:20px;
 
 }
+ul {
+    display:inline-block;
+}
 li {
-    color:white;
+    text-align: left;
+
 }
 input{
-    width:100%;
+
     font-size:38px;
     margin:10px;
 }
 button {
     font-size:36px;
     margin:10px;
+}
+
+.loginBox {
+    display:block;
 }

@@ -9,4 +9,5 @@ Meteor.setInterval(function () {
     var diff = date.clone().minutes(nextTimeUp).seconds(0).diff(date);
     var isRunning = nextTimeUp == 25 || nextTimeUp == 55;
     Times.update(currentTimeId, {$set: {value: moment.utc(diff).format('mm:ss'),isRunning: isRunning}});
+
 }, 1000);
