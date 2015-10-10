@@ -1,7 +1,7 @@
 Meteor.publish("times", function () {
     return Times.find({});
 });
-currentTimeId = Times.findOne()._id || Times.insert({value: 0});
+currentTimeId = Times.find().count()?Times.findOne()._id : Times.insert({value: 0});
 Meteor.setInterval(function () {
     var date = moment();
     var cMinutes = date.minutes();
