@@ -1,10 +1,15 @@
 body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color:white;
 }
 .listC {
     max-width:800px;
     margin:auto;
     padding:20px;
+
+}
+li {
+    color:white;
 }
 input{
     width:100%;

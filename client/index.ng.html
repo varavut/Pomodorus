@@ -1,24 +1,31 @@
 <div ng-controller="taskController">
 
-  <div class="Timer">
-    <div class="Timer-label">it's time to work</div>
-    <div class="Timer-countdown">{{times[0].value}}</div>
-  </div>
+    <div class="Timer">
+        <div class="Timer-label">it's time to {{times[0].isRunning ? 'work' : 'relax'}}</div>
+        <div class="Timer-countdown">{{times[0].value}}</div>
+    </div>
 
-  <h1> Time is still runnning ? {{isRunning}}</h1>
-<ul>
-    <li> my task is : {{mytask}}</li>
-    <li ng-repeat="item in tasks">
-        {{item.name}} : {{item.todo}}
-    </li>
-</ul>
-
+    <h1> Time is still runnning ? {{times[0].isRunning}}</h1>
+    <ul>
+        <li ng-repeat="item in tasks">
+            {{item.name}} : {{item.todo}}
+        </li>
+    </ul>
 
 
     <blaze-template name="loginButtons"></blaze-template>
+    <h2>Hello {{user.profile.name}}</h2>
 
-<input placeholder="What todo" ng-model="todo">
-<input placeholder="name" ng-model="name">
-<button ng-if="isRunning" ng-click="join()">Join now</button>
+    <div ng-if="times[0].isRunning && !mytask">
+        <input placeholder="What todo" ng-model="todo">
+        <button ng-click="join()">Join now</button>
+    </div>
+    <div ng-if="mytask && times[0].isRunning">
+        Your task is  {{mytask[0].todo}}
+    </div>
+    <div ng-if="!times[0].isRunning">
+        Break time !
+    </div>
+
 </div>
 
