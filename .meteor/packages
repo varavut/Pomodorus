@@ -21,3 +21,4 @@ insecure                # Allow all DB writes from clients (for prototyping)
 angular
 accounts-ui
 momentjs:moment
+reactive-var
