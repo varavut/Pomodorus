@@ -1,4 +1,5 @@
 angular.module('pomodorus',['angular-meteor']).controller('taskController',function($scope, $meteor){
+    $meteor.subscribe("tasks");
     $scope.tasks = $meteor.collection(Tasks);
 
     $scope.join = function(){
