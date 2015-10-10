@@ -1,12 +1,16 @@
-<div ng-controller="taskController" style="text-align:center">
+<div ng-controller="taskController" class="listC">
 
     <div class="Timer">
         <div class="Timer-label">it's time to {{times[0].isRunning ? 'work' : 'relax'}}</div>
         <div class="Timer-countdown">{{times[0].value}}</div>
     </div>
+
+    <!-- TODO:Make a scrollable list -->
     <ul >
-        <li ng-repeat="item in tasks">
-            {{item.name}} : {{item.todo}}
+        <!-- TODO: style li.success and li.fail -->
+        <li ng-repeat="item in tasks" ng-class="{'success':item.done == 1,'fail':item.done == 0}">
+            <!-- TODO: add Thumb up to each task -->
+            {{item.name}} : {{item.todo}} / {{item.done ? 'This job s done':'Fail'}}
         </li>
     </ul>
 
@@ -27,13 +31,16 @@
 
         <div ng-if="!times[0].isRunning && mytask[0]">
             <h2>Break time ! so have you done your task ?</h2>
-            <button ng-click="confirm(0)"> YES</button> <button ng-click="confirm(1)"> NO </button>
+            <button ng-click="confirm(1)"> YES</button> <button ng-click="confirm(0)"> NO </button>
         </div>
         <div ng-if="!times[0].isRunning && !mytask[0]">
             <h2>Break time ! take some coffee</h2>
         </div>
 
     </div>
+
+    <!-- TODO : get statistic of lasted 25 mins tasks  -->
+    <h2> There are tasks {{lasted.done}} done and {{lasted.fail}} fail in last 25 mins</h2>
 
 
 </div>

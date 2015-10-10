@@ -11,7 +11,9 @@ angular.module('pomodorus', ['angular-meteor']).controller('taskController', fun
                 name = $rootScope.currentUser.emails[0].address;
             }
             if($scope.todo){
-                $scope.tasks.push({name:name, todo: $scope.todo, trackId: Meteor.userId()});
+                $scope.tasks.push({name:name, todo: $scope.todo, trackId: Meteor.userId(),done:2});
+            }else{
+                alert('Input your task')
             }
 
         }
@@ -23,15 +25,13 @@ angular.module('pomodorus', ['angular-meteor']).controller('taskController', fun
     });
 
     $scope.confirm = function(taskConfirm){
-
+        $scope.mytask[0].done = taskConfirm;
     };
 
     $meteor.subscribe("times");
 
     $scope.times = $meteor.collection(Times);
     $scope.$watch('times',function(newV,oldV){
-        if(!$scope.times[0].isRunning){
-
-        }
+        // watch times for alert
     },true)
 });

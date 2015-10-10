@@ -1,0 +1,38 @@
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color:dimgrey;
+}
+.listC {
+  max-width:800px;
+  text-align:center;
+  margin:auto;
+  padding:20px;
+  input{
+
+    font-size:38px;
+    margin:10px;
+  }
+  button {
+    font-size:36px;
+    margin:10px;
+  }
+
+  .loginBox {
+    display:block;
+  }
+
+}
+ul {
+  display:inline-block;
+  li {
+    text-align: left;
+    &.success {
+      background:lawngreen;
+    }
+    &.fail{
+      background:palevioletred;
+    }
+  }
+}
+
+
