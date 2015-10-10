@@ -1,10 +1,12 @@
 <div ng-controller="taskController " class="listC">
     <h1>{{times[0].value}}</h1>
+    <h1> Time is still runnning ? {{isRunning}}</h1>
 <ul>
     <li ng-repeat="item in tasks">
         {{item.name}} : {{item.todo}}
     </li>
 </ul>
+
 <input placeholder="What todo" ng-model="todo">
 <input placeholder="name" ng-model="name">
 <button ng-click="join()"> Join Now</button>
