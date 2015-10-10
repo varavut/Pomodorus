@@ -1,11 +1,16 @@
-<div ng-controller="taskController " class="listC">
-    <h1>{{times[0].value}}</h1>
-<ul>
+<div ng-controller="taskController">
+
+  <div class="Timer">
+    <div class="Timer-label">it's time to work</div>
+    <div class="Timer-countdown">{{times[0].value}}</div>
+  </div>
+
+  <ul>
     <li ng-repeat="item in list">
-        {{item.name}} : {{item.todo}}
+      {{item.name}} : {{item.todo}}
     </li>
-</ul>
-<input placeholder="What todo" ng-model="todo">
-<input placeholder="name" ng-model="name">
-<button ng-click="join()"> Join Now</button>
+  </ul>
+  <input placeholder="What todo" ng-model="todo">
+  <input placeholder="name" ng-model="name">
+  <button ng-click="join()"> Join Now</button>
 </div>
