@@ -1,0 +1,1 @@
+Times = new Meteor.Collection("times");
