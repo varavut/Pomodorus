@@ -1,10 +1,18 @@
-// Import web fonts.
+// Variables.
+@color-light-gray: rgb(237,237,237);
+@color-dark-gray: rgba(0,0,0,0.8);
+@color-theme: rgba(113,201,189,0.3);
+
+// Web fonts.
 @import url(https://fonts.googleapis.com/css?family=Cutive+Mono);
-@import url(https://fonts.googleapis.com/css?family=Oswald);
+@import url(https://fonts.googleapis.com/css?family=Oswald:400,700,300);
+
+// Components.
+@import 'timer.import.less';
 
 // Basic body styles.
 body {
-  background-color: #2c2c2c;
+  background-color: @color-light-gray;
   margin: 0;
   padding: 0;
 }
