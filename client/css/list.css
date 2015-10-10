@@ -1,0 +1,14 @@
+.listC {
+    max-width:800px;
+    margin:auto;
+    padding:20px;
+}
+input{
+    width:100%;
+    font-size:38px;
+    margin:10px;
+}
+button {
+    font-size:36px;
+    margin:10px;
+}

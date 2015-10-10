@@ -1,0 +1,10 @@
+<div ng-controller="taskController " class="listC">
+<ul>
+    <li ng-repeat="item in list">
+        {{item.name}} : {{item.todo}}
+    </li>
+</ul>
+<input placeholder="What todo" ng-model="todo">
+<input placeholder="name" ng-model="name">
+<button ng-click="join()"> Join Now</button>
+</div>
