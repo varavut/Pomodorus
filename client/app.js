@@ -22,7 +22,7 @@ var app = angular.module('pomodorus', ['angular-meteor']).controller('taskContro
             } else {
                 alert('Input your task')
             }
-        }
+    }
     };
     $scope.addComment = function (task) {
         var d = task.comments[Meteor.userId()];
@@ -32,9 +32,10 @@ var app = angular.module('pomodorus', ['angular-meteor']).controller('taskContro
             d.user = Meteor.user();
             d.comment = $scope.inputComments[task.owner];
         }
-        $scope.inputComments[task.owner] = '';
+    $scope.inputComments[task.owner] = '';
     }
     $scope.thumb = function (item) {
+        console.log(Meteor.userId());
         if (!item.comments[Meteor.userId()]) {
             item.comments[Meteor.userId()] = {thumb: 1}
         } else {
