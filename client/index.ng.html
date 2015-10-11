@@ -15,6 +15,7 @@
     <ul class="TasksList">
         <!-- TODO: style li.success and li.fail -->
         <li ng-if="!tasks.length">No one is working right now. Add your task below to get started!</li>
+        <li ng-if="!times[0].isRunning && tasks.length" style="margin-bottom: 50px;">Break time! {{lastRoundDoneCount()}} people stayed focused and {{lastRoundFailCount()}} did not.</li>
         <li class="TasksList-task" ng-repeat="item in tasks" ng-class="{'TasksList-task--success':item.status == 1,'TasksList-task--fail':item.status == 0}">
             <!-- TODO: add Thumb up to each task -->
             <div class="TasksList-taskTitle">{{item.title}}</div>
@@ -35,11 +36,6 @@
             </div>
         </li>
     </ul>
-
-    <!-- TODO : get statistic of lasted 25 mins tasks  -->
-    <div ng-if="!times[0].isRunning">
-        <h2> There are {{lastRoundDoneCount()}} tasks done and {{lastRoundFailCount()}}  fail in last 25 mins</h2>
-    </div>
 
     <div class="Controls">
         <div class="Controls-background"></div>
