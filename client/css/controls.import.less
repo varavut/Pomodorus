@@ -6,6 +6,57 @@
   padding: 20px;
 }
 
+.Controls-background {
+  background-color: #c2c2c2;
+  position: absolute;
+  top: -50px;
+  left: -500px;
+  right: -500px;
+  bottom: -500px;
+  transform: rotate(-3deg);
+}
+
+.Controls-content {
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.Controls-taskForm {
+  margin-top: 50px;
+
+  input, button {
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 24px;
+    font-family: @font-sans;
+    height: 60px;
+    border: 0;
+  }
+
+  input {
+    width: 70%;
+  }
+
+  button {
+    width: 25%;
+    position: absolute;
+    right: 0;
+    font-weight: 400;
+    background-color: #333;
+    color: @color-theme;
+  }
+}
+
 .Controls-login {
-  
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  #login-dropdown-list {
+    top: auto;
+    left: auto;
+    right: -1px;
+    bottom: -1px;
+  }
 }

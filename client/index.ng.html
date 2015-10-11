@@ -3,6 +3,7 @@
 <div ng-controller="taskController">
 
     <div class="Timer">
+        <div class="Timer-background"></div>
         <div class="Timer-label">{{times[0].isRunning ? 'it&rsquo;s time to work' : 'take a break'}}</div>
         <div class="Timer-countdown">{{times[0].value}}</div>
     </div>
@@ -11,19 +12,16 @@
     <!-- <h2>Last round {{lasted.done}} people stayed on task and {{lasted.fail}} did not.</h2> -->
 
     <!-- TODO:Make a scrollable list -->
-    <ul class="Tasks">
+    <ul class="TasksList">
         <!-- TODO: style li.success and li.fail -->
-        <li class="Tasks-task" ng-repeat="item in tasks" ng-class="{'Tasks-task--success':item.status == 1,'Tasks-task--fail':item.status == 0}">
+        <li class="TasksList-task" ng-repeat="item in tasks" ng-class="{'TasksList-task--success':item.status == 1,'TasksList-task--fail':item.status == 0}">
             <!-- TODO: add Thumb up to each task -->
-            <!-- TODO: only show status after the work session is over and the user has said whether it's success -->
-            <span class="Tasks-taskOwner">{{getOwner(item) | displayName}}</span>
-            <span class="Tasks-taskTitle">{{item.title}}</span>
-            <span class="Tasks-taskStatus">{{item.status ? 'Stayed on task!':'Distracted'}} </span>
-            <img class="Tasks-taskOwnerImage" src="{{getProfileImage(getOwner(item))}}">
+            <span class="TasksList-taskOwner">{{getOwner(item) | displayName}}</span>
+            <span class="TasksList-taskTitle">{{item.title}}</span>
+            <img class="TasksList-taskOwnerImage" src="{{getProfileImage(getOwner(item))}}">
             <div> {{item.thumbs}} Thumbs </div>
             <div>
                 <button ng-click="thumb(item)" ng-if="!item.comments[currentUser._id].thumb"> thumb {{item.comments[currentUser._id].thumb}} up</button>
-
             </div>
             <input placeholder="leave comment" ng-model="inputComments[item.owner]"><button ng-click = "addComment(item)">send</button>
             <ul>
@@ -38,33 +36,34 @@
     </div>
 
     <div class="Controls">
+        <div class="Controls-background"></div>
+        <div class="Controls-content">
 
-        <blaze-template name="loginButtons" class="Controls-login"></blaze-template>
+            <blaze-template name="loginButtons" class="Controls-login"></blaze-template>
 
-        <div ng-show="currentUser">
+            <div ng-show="currentUser">
 
-            <div ng-show="times[0].isRunning && !mytask[0]">
-                <input placeholder="What will you focus on?" ng-model="todo">
-                <button ng-click="join()">Join now</button>
+                <div ng-show="times[0].isRunning && !mytask[0]" class="Controls-taskForm">
+                    <input placeholder="What will you focus on?" ng-model="todo">
+                    <button ng-click="join()">Join now</button>
+                </div>
+
+                <div ng-show="mytask[0] && times[0].isRunning">
+                    Now focusing on: {{mytask[0].title}}
+                </div>
+
+                <div ng-if="!times[0].isRunning && mytask[0] && mytask[0].status==2">
+                    <h2>Did you stay focused on your task?</h2>
+                    <button ng-click="confirm(1)">Heck yes</button>
+                    <button ng-click="confirm(0)">Nope</button>
+                </div>
+
+                <div ng-if="!times[0].isRunning && !mytask[0]">
+                    <h2>Break time! Take a walk.</h2>
+                </div>
+
             </div>
-
-            <div ng-show="mytask[0] && times[0].isRunning">
-                Now focusing on: {{mytask[0].title}}
-                <button ng-click="confirm(1)">Heck yes</button>
-                <button ng-click="confirm(0)">Nope</button>
-            </div>
-
-            <div ng-if="!times[0].isRunning && mytask[0] && mytask[0].status==2">
-                <h2>Did you stay focused on your task?</h2>
-
-            </div>
-            
-            <div ng-if="!times[0].isRunning && !mytask[0]">
-                <h2>Break time! Take a walk.</h2>
-            </div>
-
         </div>
-
     </div>
 
 
