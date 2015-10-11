@@ -18,8 +18,18 @@
             <!-- TODO: only show status after the work session is over and the user has said whether it's success -->
             <span class="Tasks-taskOwner">{{getOwner(item) | displayName}}</span>
             <span class="Tasks-taskTitle">{{item.title}}</span>
-            <span class="Tasks-taskStatus">{{item.status ? 'Stayed on task!':'Distracted'}}</span>
+            <span class="Tasks-taskStatus">{{item.status ? 'Stayed on task!':'Distracted'}} </span>
             <img class="Tasks-taskOwnerImage" src="{{getProfileImage(getOwner(item))}}">
+            <div> {{item.thumbs}} Thumbs </div>
+            <div>
+                <button ng-click="thumb(item)" ng-if="!item.comments[currentUser._id].thumb"> thumb {{item.comments[currentUser._id].thumb}} up</button>
+
+            </div>
+            <input placeholder="leave comment" ng-model="inputComments[item.owner]"><button ng-click = "addComment(item)">send</button>
+            <button>show {{item.comments.length}} comment</button>
+            <ul>
+                <li ng-repeat="comment in item.comments track by $index">{{comment.user.profile.name}} said {{comment.comment}}</li>
+            </ul>
         </li>
     </ul>
 
@@ -41,12 +51,13 @@
 
             <div ng-show="mytask[0] && times[0].isRunning">
                 Now focusing on: {{mytask[0].title}}
+                <button ng-click="confirm(1)">Heck yes</button>
+                <button ng-click="confirm(0)">Nope</button>
             </div>
 
             <div ng-if="!times[0].isRunning && mytask[0] && mytask[0].status==2">
                 <h2>Did you stay focused on your task?</h2>
-                <button ng-click="confirm(1)">Heck yes</button>
-                <button ng-click="confirm(0)">Nope</button>
+
             </div>
             
             <div ng-if="!times[0].isRunning && !mytask[0]">

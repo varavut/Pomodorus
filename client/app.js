@@ -5,6 +5,7 @@ Accounts.ui.config({
 angular.module('pomodorus', ['angular-meteor']).controller('taskController', function ($scope, $meteor, $rootScope) {
     $meteor.subscribe("tasks");
     $scope.tasks = $meteor.collection(Tasks);
+    $scope.inputComments  = { };
     $scope.join = function () {
         if ($scope.mytask.length == 0) {
             if ($scope.todo) {
@@ -14,7 +15,8 @@ angular.module('pomodorus', ['angular-meteor']).controller('taskController', fun
                         owner: Meteor.userId(),
                         createdAt: new Date(),
                         status: 2,
-                        comments: [/*{message: '',postBy:'',}*/]
+                        comments: { },
+                        thumbs:0
                     }
                 );
                 $scope.todo = '';
@@ -23,7 +25,16 @@ angular.module('pomodorus', ['angular-meteor']).controller('taskController', fun
             }
         }
     };
-
+    $scope.addComment = function(task){
+        console.log($scope.inputComments[task.owner]);
+        task.comments[Meteor.userId()] = {user:Meteor.user(),comment:$scope.inputComments[task.owner]};
+    }
+    $scope.thumb = function(item){
+        if(!item.comments[Meteor.userId()]){
+            item.comments[Meteor.userId()] = {thumb:1}
+        }
+        item.thumbs ++;
+    }
     $scope.mytask = $meteor.collection(function () {
         return Tasks.find({owner: Meteor.userId()});
     });
@@ -39,7 +50,7 @@ angular.module('pomodorus', ['angular-meteor']).controller('taskController', fun
             var audio = new Audio('/sounds/alert.mp3');
             audio.play();
         }
-    }, true)
+    }, true);
 
     $meteor.subscribe("users");
     $scope.getUserById = function(userId){
