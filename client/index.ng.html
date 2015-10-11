@@ -30,25 +30,25 @@
 
     <div class="Controls">
 
-        <blaze-template name="loginButtons" class="loginBox"></blaze-template>
+        <blaze-template name="loginButtons" class="Controls-login"></blaze-template>
 
         <div ng-show="currentUser">
 
             <div ng-show="times[0].isRunning && !mytask[0]">
-                <input placeholder="What will you work on?" ng-model="todo">
+                <input placeholder="What will you focus on?" ng-model="todo">
                 <button ng-click="join()">Join now</button>
             </div>
 
             <div ng-show="mytask[0] && times[0].isRunning">
-                Your task is {{mytask[0].title}}
+                Now focusing on: {{mytask[0].title}}
             </div>
-
 
             <div ng-if="!times[0].isRunning && mytask[0] && mytask[0].status==2">
-                <h2>Break time ! so have you done your task ?</h2>
-                <button ng-click="confirm(1)"> YES</button>
-                <button ng-click="confirm(0)"> NO</button>
+                <h2>Did you stay focused on your task?</h2>
+                <button ng-click="confirm(1)">Heck yes</button>
+                <button ng-click="confirm(0)">Nope</button>
             </div>
+            
             <div ng-if="!times[0].isRunning && !mytask[0]">
                 <h2>Break time! Take a walk.</h2>
             </div>
