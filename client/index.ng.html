@@ -7,7 +7,7 @@
     </div>
 
     <!-- TODO:Make a scrollable list -->
-    <ul >
+    <ul>
         <!-- TODO: style li.success and li.fail -->
         <li ng-repeat="item in tasks" ng-class="{'success':item.done == 1,'fail':item.done == 0}">
             <!-- TODO: add Thumb up to each task -->
@@ -18,7 +18,6 @@
     <h2 ng-if="currentUser">Hello</h2>
     <blaze-template name="loginButtons" class="loginBox"></blaze-template>
     <div ng-show="currentUser">
-
 
 
         <div ng-show="times[0].isRunning && !mytask[0]">
@@ -32,7 +31,8 @@
 
         <div ng-if="!times[0].isRunning && mytask[0]">
             <h2>Break time ! so have you done your task ?</h2>
-            <button ng-click="confirm(1)"> YES</button> <button ng-click="confirm(0)"> NO </button>
+            <button ng-click="confirm(1)"> YES</button>
+            <button ng-click="confirm(0)"> NO</button>
         </div>
         <div ng-if="!times[0].isRunning && !mytask[0]">
             <h2>Break time ! take some coffee</h2>
@@ -41,7 +41,7 @@
     </div>
 
     <!-- TODO : get statistic of lasted 25 mins tasks  -->
-    <h2> There are {{lasted.done}} tasks  done  and {{lasted.fail}}  fail in last 25 mins</h2>
+    <h2> There are {{lasted.done}} tasks done and {{lasted.fail}}  fail in last 25 mins</h2>
 
 
 </div>
