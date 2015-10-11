@@ -30,8 +30,8 @@ angular.module('pomodorus', ['angular-meteor']).controller('taskController', fun
     };
 
     $meteor.subscribe("times");
-
     $scope.times = $meteor.collection(Times);
+
     $scope.$watch('times',function(newV,oldV){
         // watch times for alert
     },true)
