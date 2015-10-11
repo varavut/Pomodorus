@@ -1,11 +1,10 @@
 Accounts.ui.config({
     passwordSignupFields: "USERNAME_ONLY"
 });
-
 var app = angular.module('pomodorus', ['angular-meteor']).controller('taskController', ['$scope', '$meteor', function ($scope, $meteor) {
     $meteor.subscribe("tasks");
     $scope.tasks = $meteor.collection(Tasks);
-    $scope.inputComments  = { };
+    $scope.inputComments = {};
     $scope.join = function () {
         if ($scope.mytask.length == 0) {
             if ($scope.todo) {
@@ -15,8 +14,8 @@ var app = angular.module('pomodorus', ['angular-meteor']).controller('taskContro
                         owner: Meteor.userId(),
                         createdAt: new Date(),
                         status: 2,
-                        comments: { },
-                        thumbs:0
+                        comments: {},
+                        thumbs: 0
                     }
                 );
                 $scope.todo = '';
@@ -25,22 +24,23 @@ var app = angular.module('pomodorus', ['angular-meteor']).controller('taskContro
             }
         }
     };
-    $scope.addComment = function(task){
-        if(!task.comments[Meteor.userId()]){
-            task.comments[Meteor.userId()] = {user:Meteor.user(),comment:$scope.inputComments[task.owner]};
-        }else {
-            task.comments[Meteor.userId()].user = Meteor.user();
-            task.comments[Meteor.userId()].comment = $scope.inputComments[task.owner];
+    $scope.addComment = function (task) {
+        var d = task.comments[Meteor.userId()];
+        if (!d) {
+            d = {user: Meteor.user(), comment: $scope.inputComments[task.owner]};
+        } else {
+            d.user = Meteor.user();
+            d.comment = $scope.inputComments[task.owner];
         }
-
+        $scope.inputComments[task.owner] = '';
     }
-    $scope.thumb = function(item){
-        if(!item.comments[Meteor.userId()]){
-            item.comments[Meteor.userId()] = {thumb:1}
-        }else {
+    $scope.thumb = function (item) {
+        if (!item.comments[Meteor.userId()]) {
+            item.comments[Meteor.userId()] = {thumb: 1}
+        } else {
             item.comments[Meteor.userId()].thumb = 1;
         }
-        item.thumbs ++;
+        item.thumbs++;
     }
     $scope.mytask = $meteor.collection(function () {
         return Tasks.find({owner: Meteor.userId()});

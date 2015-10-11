@@ -14,19 +14,25 @@
     <!-- TODO:Make a scrollable list -->
     <ul class="TasksList">
         <!-- TODO: style li.success and li.fail -->
+        <li ng-if="!tasks.length">No one is working right now. Add your task below to get started!</li>
         <li class="TasksList-task" ng-repeat="item in tasks" ng-class="{'TasksList-task--success':item.status == 1,'TasksList-task--fail':item.status == 0}">
             <!-- TODO: add Thumb up to each task -->
             <div class="TasksList-taskTitle">{{item.title}}</div>
             <img class="TasksList-taskOwnerImage" src="{{getProfileImage(getOwner(item))}}">
             <span class="TasksList-taskOwner">{{getOwner(item) | displayName}}</span>
+
             <span class="TasksList-thumbsCount">{{item.thumbs}} thumbs up</span>
-            <div class="TasksList-thumbsComments" ng-show="currentUser">
-                <a class="TasksList-thumbsUp" ng-click="thumb(item)" ng-if="!item.comments[currentUser._id].thumb"> give thumbs up</a> or
+            <div class="TasksList-thumbsComments" ng-show="currentUser" ng-init="item.showComment = false">
+                <span ng-if="!item.comments[currentUser._id].thumb"><a class="TasksList-thumbsUp" ng-click="thumb(item)"> give thumbs up</a> or </span>
                 <input class="TasksList-commentField" placeholder="leave a comment" ng-model="inputComments[item.owner]"><button class="TasksList-commentButton" ng-click = "addComment(item)">send</button>
             </div>
-            <ul class="TasksList-taskComments">
-                <li ng-repeat="comment in item.comments track by $index" ng-if="comment.comment">{{comment.user.profile.name}} said {{comment.comment}}</li>
-            </ul>
+
+            <div>
+              <button ng-click="item.showComment = !item.showComment">show/hide comments</button>
+              <ul ng-if="item.showComment" class="TasksList-taskComments">
+                  <li ng-repeat="comment in item.comments track by $index" ng-if="comment.comment">{{comment.user.profile.name}} said {{comment.comment}}</li>
+              </ul>
+            </div>
         </li>
     </ul>
 
