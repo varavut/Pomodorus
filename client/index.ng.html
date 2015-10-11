@@ -31,7 +31,7 @@
             <div>
               <button ng-click="item.showComment = !item.showComment">show/hide comments</button>
               <ul ng-if="item.showComment" class="TasksList-taskComments">
-                  <li ng-repeat="comment in item.comments track by $index" ng-if="comment.comment">{{comment.user.profile.name}} said {{comment.comment}}</li>
+                  <li ng-repeat="comment in item.comments" ng-if="comment.comment">{{comment.user.profile.name}}{{comment.user.username}} said {{comment.comment}}</li>
               </ul>
             </div>
         </li>
