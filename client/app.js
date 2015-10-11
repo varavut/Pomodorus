@@ -14,7 +14,7 @@ angular.module('pomodorus', ['angular-meteor']).controller('taskController', fun
                         owner: Meteor.userId(),
                         createdAt: new Date(),
                         status: 2,
-                        comments: []
+                        comments: [/*{message: '',postBy:'',}*/]
                     }
                 );
                 $scope.todo = '';
@@ -61,35 +61,12 @@ angular.module('pomodorus', ['angular-meteor']).controller('taskController', fun
     $scope.lastRoundFailCount = function(){
         return Tasks.find({status: 0}).count();
     }
-
-    $scope.lastRoundTaskCount = function(){
-        return Tasks.find({}).count();
-    }
-
-    /*
-     structure of task
-     var task = {
-         title: '',
-         owner: '',
-         createdAt: new Date(),
-         completed: false,
-         comments: [
-             {
-                 message: '',
-                 postBy:'',
-             }
-         ]
-     }
-     */
+    
 }).filter('displayName', function () {
     return function (user) {
-        if (!user)
-            return;
-        if (user.profile && user.profile.name)
-            return user.profile.name;
-        else if (user.emails)
-            return user.emails[0].address;
-        else
-            return user;
+        if (!user) return;
+        if (user.profile && user.profile.name) return user.profile.name;
+        else if (user.emails) return user.emails[0].address;
+        else return user;
     }
 });
