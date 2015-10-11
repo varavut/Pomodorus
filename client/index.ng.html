@@ -12,15 +12,15 @@
     <!-- <h2>Last round {{lasted.done}} people stayed on task and {{lasted.fail}} did not.</h2> -->
 
     <!-- TODO:Make a scrollable list -->
-    <ul class="Tasks">
+    <ul class="TasksList">
         <!-- TODO: style li.success and li.fail -->
-        <li class="Tasks-task" ng-repeat="item in tasks" ng-class="{'Tasks-task--success':item.status == 1,'Tasks-task--fail':item.status == 0}">
+        <li class="TasksList-task" ng-repeat="item in tasks" ng-class="{'TasksList-task--success':item.status == 1,'TasksList-task--fail':item.status == 0}">
             <!-- TODO: add Thumb up to each task -->
             <!-- TODO: only show status after the work session is over and the user has said whether it's success -->
-            <span class="Tasks-taskOwner">{{getOwner(item) | displayName}}</span>
-            <span class="Tasks-taskTitle">{{item.title}}</span>
-            <span class="Tasks-taskStatus">{{item.status ? 'Stayed on task!':'Distracted'}}</span>
-            <img class="Tasks-taskOwnerImage" src="{{getProfileImage(getOwner(item))}}">
+            <span class="TasksList-taskOwner">{{getOwner(item) | displayName}}</span>
+            <span class="TasksList-taskTitle">{{item.title}}</span>
+            <span class="TasksList-taskStatus">{{item.status ? 'Stayed on task!':'Distracted'}}</span>
+            <img class="TasksList-taskOwnerImage" src="{{getProfileImage(getOwner(item))}}">
         </li>
     </ul>
 
