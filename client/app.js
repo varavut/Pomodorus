@@ -32,6 +32,8 @@ var app = angular.module('pomodorus', ['angular-meteor']).controller('taskContro
     $scope.thumb = function(item){
         if(!item.comments[Meteor.userId()]){
             item.comments[Meteor.userId()] = {thumb:1}
+        }else {
+            item.comments[Meteor.userId()].thumb = 1;
         }
         item.thumbs ++;
     }
