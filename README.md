@@ -4,7 +4,7 @@ Stay focused on your task, 25 minutes at a time, with people around the world.
 
 ##Inspiration
 
-The Pomodoro technique is a popular way to focus on the task at hand and improve productivity. What if you could connect with others who are working and motivate each other to stay productive and on task?
+The [Pomodoro technique](https://en.wikipedia.org/wiki/Pomodoro_Technique) is a popular way to focus on the task at hand and improve productivity. What if you could connect with others who are working and motivate each other to stay productive and on task?
 
 ##What it does
 
