@@ -5,7 +5,7 @@ Tasks.allow({
         return true;
     },
     update: function (userId, task, fields, modifier) {
-        return userId && task.owner == userId;
+        return true;
     },
     remove: function (userId, swot) {
         if(Meteor.isServer) return true; return false;
