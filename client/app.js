@@ -26,8 +26,13 @@ var app = angular.module('pomodorus', ['angular-meteor']).controller('taskContro
         }
     };
     $scope.addComment = function(task){
-        console.log($scope.inputComments[task.owner]);
-        task.comments[Meteor.userId()] = {user:Meteor.user(),comment:$scope.inputComments[task.owner]};
+        if(!task.comments[Meteor.userId()]){
+            task.comments[Meteor.userId()] = {user:Meteor.user(),comment:$scope.inputComments[task.owner]};
+        }else {
+            task.comments[Meteor.userId()].user = Meteor.user();
+            task.comments[Meteor.userId()].comment = $scope.inputComments[task.owner];
+        }
+
     }
     $scope.thumb = function(item){
         if(!item.comments[Meteor.userId()]){
