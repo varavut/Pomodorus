@@ -23,36 +23,42 @@
         </li>
     </ul>
 
-    <blaze-template name="loginButtons" class="loginBox"></blaze-template>
-
-    <div ng-show="currentUser">
-
-        <div ng-show="times[0].isRunning && !mytask[0]">
-            <input placeholder="What will you work on?" ng-model="todo">
-            <button ng-click="join()">Join now</button>
-        </div>
-
-        <div ng-show="mytask[0] && times[0].isRunning">
-            Your task is {{mytask[0].title}}
-        </div>
-
-
-        <div ng-if="!times[0].isRunning && mytask[0] && mytask[0].status==2">
-            <h2>Break time ! so have you done your task ?</h2>
-            <button ng-click="confirm(1)"> YES</button>
-            <button ng-click="confirm(0)"> NO</button>
-        </div>
-        <div ng-if="!times[0].isRunning && !mytask[0]">
-            <h2>Break time! Take a walk.</h2>
-        </div>
-
-    </div>
-
-
+    <!-- TODO : get statistic of lasted 25 mins tasks  -->
     <div ng-if="!times[0].isRunning">
-        <!-- TODO : get statistic of lasted 25 mins tasks  -->
         <h2> There are {{lastRoundDoneCount()}} tasks done and {{lastRoundFailCount()}}  fail in last 25 mins</h2>
     </div>
+
+    <div class="Controls">
+
+        <blaze-template name="loginButtons" class="loginBox"></blaze-template>
+
+        <div ng-show="currentUser">
+
+            <div ng-show="times[0].isRunning && !mytask[0]">
+                <input placeholder="What will you work on?" ng-model="todo">
+                <button ng-click="join()">Join now</button>
+            </div>
+
+            <div ng-show="mytask[0] && times[0].isRunning">
+                Your task is {{mytask[0].title}}
+            </div>
+
+
+            <div ng-if="!times[0].isRunning && mytask[0] && mytask[0].status==2">
+                <h2>Break time ! so have you done your task ?</h2>
+                <button ng-click="confirm(1)"> YES</button>
+                <button ng-click="confirm(0)"> NO</button>
+            </div>
+            <div ng-if="!times[0].isRunning && !mytask[0]">
+                <h2>Break time! Take a walk.</h2>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
 
 
 </div>
