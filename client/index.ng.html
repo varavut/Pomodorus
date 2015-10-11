@@ -3,7 +3,7 @@
 <div ng-controller="taskController">
 
     <div class="Timer">
-        <div class="Timer-label">it's time to {{times[0].isRunning ? 'work' : 'relax'}}</div>
+        <div class="Timer-label">{{times[0].isRunning ? 'it&rsquo;s time to work' : 'take a break'}}</div>
         <div class="Timer-countdown">{{times[0].value}}</div>
     </div>
 
