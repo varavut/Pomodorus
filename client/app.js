@@ -65,6 +65,10 @@ var app = angular.module('pomodorus', ['angular-meteor']).controller('taskContro
         return Tasks.find({status: 0}).count();
     }
 
+    $scope.lastRoundCount = function () {
+        return Tasks.find().count();
+    }
+
 }]).filter('displayName', function () {
     return function (user) {
         if (!user) return;
