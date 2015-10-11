@@ -29,7 +29,7 @@
             Your task is {{mytask[0].title}}
         </div>
 
-        <div ng-if="!times[0].isRunning && mytask[0]">
+        <div ng-if="!times[0].isRunning && mytask[0] && mytask[0].status==2">
             <h2>Break time ! so have you done your task ?</h2>
             <button ng-click="confirm(1)"> YES</button>
             <button ng-click="confirm(0)"> NO</button>
