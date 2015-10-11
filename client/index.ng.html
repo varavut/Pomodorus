@@ -1,5 +1,6 @@
 <!-- TODO : fix spelling -->
-<div ng-controller="taskController" class="listC">
+
+<div ng-controller="taskController">
 
     <div class="Timer">
         <div class="Timer-label">it's time to {{times[0].isRunning ? 'work' : 'relax'}}</div>
@@ -7,7 +8,7 @@
     </div>
 
     <!-- TODO:Make a scrollable list -->
-    <ul>
+    <ul class="listC">
         <!-- TODO: style li.success and li.fail -->
         <li ng-repeat="item in tasks" ng-class="{'success':item.done == 1,'fail':item.done == 0}">
             <!-- TODO: add Thumb up to each task -->
@@ -45,4 +46,3 @@
 
 
 </div>
-
