@@ -8,6 +8,8 @@
 .TasksList-task {
   font-size: 20px;
   font-weight: 300;
+  position: relative;
+  margin-bottom: 60px;
 
   &.TasksList-task--success {
     background:lawngreen;
@@ -31,4 +33,42 @@
   border-radius: 16px;
   top: 7px;
   position: relative;
+}
+
+.TasksList-thumbsComments {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.TasksList-thumbsUp {
+  color: blue;
+}
+
+.TasksList-commentField {
+  font-size: 20px;
+  font-weight: 300;
+  font-family: 'Oswald';
+  border: 0;
+  padding: 0 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.TasksList-commentButton {
+  background-color: #CCC;
+  height: 30px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0 10px;
+  border: 0;
+  position: absolute;
+  font-size: 14px;
+  font-family: 'Oswald';
+  text-transform: uppercase;
+}
+
+.TasksList-taskComments {
+  position: absolute;
+  left: 0;
 }

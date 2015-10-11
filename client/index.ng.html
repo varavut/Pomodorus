@@ -19,14 +19,12 @@
             <div class="TasksList-taskTitle">{{item.title}}</div>
             <img class="TasksList-taskOwnerImage" src="{{getProfileImage(getOwner(item))}}">
             <span class="TasksList-taskOwner">{{getOwner(item) | displayName}}</span>
-            <div> {{item.thumbs}} Thumbs </div>
-            <div ng-show="currentUser">
-                <div>
-                    <button ng-click="thumb(item)" ng-if="!item.comments[currentUser._id].thumb"> thumb {{item.comments[currentUser._id].thumb}} up</button>
-                </div>
-                <input placeholder="leave comment" ng-model="inputComments[item.owner]"><button ng-click = "addComment(item)">send</button>
+            <span class="TasksList-thumbsCount">{{item.thumbs}} thumbs up</span>
+            <div class="TasksList-thumbsComments" ng-show="currentUser">
+                <a class="TasksList-thumbsUp" ng-click="thumb(item)" ng-if="!item.comments[currentUser._id].thumb"> give thumbs up</a> or
+                <input class="TasksList-commentField" placeholder="leave a comment" ng-model="inputComments[item.owner]"><button class="TasksList-commentButton" ng-click = "addComment(item)">send</button>
             </div>
-            <ul>
+            <ul class="TasksList-taskComments">
                 <li ng-repeat="comment in item.comments track by $index" ng-if="comment.comment">{{comment.user.profile.name}} said {{comment.comment}}</li>
             </ul>
         </li>
