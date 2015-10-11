@@ -61,7 +61,7 @@ angular.module('pomodorus', ['angular-meteor']).controller('taskController', fun
     $scope.lastRoundFailCount = function(){
         return Tasks.find({status: 0}).count();
     }
-    
+
 }).filter('displayName', function () {
     return function (user) {
         if (!user) return;

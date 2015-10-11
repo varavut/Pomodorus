@@ -8,8 +8,6 @@ Tasks.allow({
         return userId && task.owner == userId;
     },
     remove: function (userId, swot) {
-        if(Meteor.isServer)
-            return true;
-        return false;
+        if(Meteor.isServer) return true; return false;
     }
 });
