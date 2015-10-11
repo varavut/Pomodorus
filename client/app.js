@@ -2,9 +2,10 @@ Accounts.ui.config({
     passwordSignupFields: "USERNAME_ONLY"
 });
 
-angular.module('pomodorus', ['angular-meteor']).controller('taskController', function ($scope, $meteor, $rootScope) {
+var app = angular.module('pomodorus', ['angular-meteor']).controller('taskController', ['$scope', '$meteor', function ($scope, $meteor) {
     $meteor.subscribe("tasks");
     $scope.tasks = $meteor.collection(Tasks);
+    $scope.inputComments  = { };
     $scope.join = function () {
         if ($scope.mytask.length == 0) {
             if ($scope.todo) {
@@ -14,7 +15,8 @@ angular.module('pomodorus', ['angular-meteor']).controller('taskController', fun
                         owner: Meteor.userId(),
                         createdAt: new Date(),
                         status: 2,
-                        comments: [/*{message: '',postBy:'',}*/]
+                        comments: { },
+                        thumbs:0
                     }
                 );
                 $scope.todo = '';
@@ -23,7 +25,16 @@ angular.module('pomodorus', ['angular-meteor']).controller('taskController', fun
             }
         }
     };
-
+    $scope.addComment = function(task){
+        console.log($scope.inputComments[task.owner]);
+        task.comments[Meteor.userId()] = {user:Meteor.user(),comment:$scope.inputComments[task.owner]};
+    }
+    $scope.thumb = function(item){
+        if(!item.comments[Meteor.userId()]){
+            item.comments[Meteor.userId()] = {thumb:1}
+        }
+        item.thumbs ++;
+    }
     $scope.mytask = $meteor.collection(function () {
         return Tasks.find({owner: Meteor.userId()});
     });
@@ -39,37 +50,42 @@ angular.module('pomodorus', ['angular-meteor']).controller('taskController', fun
             var audio = new Audio('/sounds/alert.mp3');
             audio.play();
         }
-    }, true)
+    }, true);
 
     $meteor.subscribe("users");
-    $scope.getUserById = function(userId){
+    $scope.getUserById = function (userId) {
         return Meteor.users.findOne(userId);
     }
-    $scope.getOwner = function(task){
+    $scope.getOwner = function (task) {
         if (!task) return;
         var owner = $scope.getUserById(task.owner);
         if (!owner) return 'N/A';
         return owner;
     };
-    $scope.getProfileImage = function(user){
-        if(!user.services || !user.services.facebook)
+    $scope.getProfileImage = function (user) {
+        if (!user.services || !user.services.facebook)
             return "/images/profile.png";
         return "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?type=large";
     }
 
-    $scope.lastRoundDoneCount = function(){
+    $scope.lastRoundDoneCount = function () {
         return Tasks.find({status: 1}).count();
     }
 
-    $scope.lastRoundFailCount = function(){
+    $scope.lastRoundFailCount = function () {
         return Tasks.find({status: 0}).count();
     }
 
-}).filter('displayName', function () {
+    $scope.lastRoundCount = function () {
+        return Tasks.find().count();
+    }
+
+}]).filter('displayName', function () {
     return function (user) {
         if (!user) return;
+        if (user.username || user.email) return user.username || user.email;
         if (user.profile && user.profile.name) return user.profile.name;
-        else if (user.emails) return user.emails[0].address;
-        else return user;
+        if (user.emails) return user.emails[0].address;
+        return user._id;
     }
 });

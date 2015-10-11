@@ -19,6 +19,15 @@
             <span class="TasksList-taskOwner">{{getOwner(item) | displayName}}</span>
             <span class="TasksList-taskTitle">{{item.title}}</span>
             <img class="TasksList-taskOwnerImage" src="{{getProfileImage(getOwner(item))}}">
+            <div> {{item.thumbs}} Thumbs </div>
+            <div>
+                <button ng-click="thumb(item)" ng-if="!item.comments[currentUser._id].thumb"> thumb {{item.comments[currentUser._id].thumb}} up</button>
+            </div>
+            <input placeholder="leave comment" ng-model="inputComments[item.owner]"><button ng-click = "addComment(item)">send</button>
+            <button>show {{item.comments.length}} comment</button>
+            <ul>
+                <li ng-repeat="comment in item.comments track by $index">{{comment.user.profile.name}} said {{comment.comment}}</li>
+            </ul>
         </li>
     </ul>
 
@@ -26,7 +35,6 @@
     <div ng-if="!times[0].isRunning">
         <h2> There are {{lastRoundDoneCount()}} tasks done and {{lastRoundFailCount()}}  fail in last 25 mins</h2>
     </div>
-
 
     <div class="Controls">
         <div class="Controls-background"></div>
