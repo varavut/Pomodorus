@@ -3,6 +3,7 @@
 <div ng-controller="taskController">
 
     <div class="Timer">
+        <div class="Timer-background"></div>
         <div class="Timer-label">{{times[0].isRunning ? 'it&rsquo;s time to work' : 'take a break'}}</div>
         <div class="Timer-countdown">{{times[0].value}}</div>
     </div>
@@ -28,6 +29,7 @@
         <h2> There are {{lastRoundDoneCount()}} tasks done and {{lastRoundFailCount()}}  fail in last 25 mins</h2>
     </div>
 
+
     <div class="Controls">
 
         <blaze-template name="loginButtons" class="Controls-login"></blaze-template>
@@ -48,7 +50,7 @@
                 <button ng-click="confirm(1)">Heck yes</button>
                 <button ng-click="confirm(0)">Nope</button>
             </div>
-            
+
             <div ng-if="!times[0].isRunning && !mytask[0]">
                 <h2>Break time! Take a walk.</h2>
             </div>
