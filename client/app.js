@@ -34,8 +34,11 @@ angular.module('pomodorus', ['angular-meteor']).controller('taskController', fun
 
     $meteor.subscribe("times");
     $scope.times = $meteor.collection(Times);
-    $scope.$watch('times', function (newV, oldV) {
-        // watch times for alert
+    $scope.$watch('times[0].isRunning', function (newV, oldV) {
+        if (!newV && newV != oldV) {
+            var audio = new Audio('/sounds/alert.mp3');
+            audio.play();
+        }
     }, true)
 
     $meteor.subscribe("users");
