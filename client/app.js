@@ -2,7 +2,7 @@ Accounts.ui.config({
     passwordSignupFields: "USERNAME_ONLY"
 });
 
-angular.module('pomodorus', ['angular-meteor']).controller('taskController', function ($scope, $meteor, $rootScope) {
+var app = angular.module('pomodorus', ['angular-meteor']).controller('taskController', ['$scope', '$meteor', function ($scope, $meteor) {
     $meteor.subscribe("tasks");
     $scope.tasks = $meteor.collection(Tasks);
     $scope.join = function () {
@@ -42,30 +42,30 @@ angular.module('pomodorus', ['angular-meteor']).controller('taskController', fun
     }, true)
 
     $meteor.subscribe("users");
-    $scope.getUserById = function(userId){
+    $scope.getUserById = function (userId) {
         return Meteor.users.findOne(userId);
     }
-    $scope.getOwner = function(task){
+    $scope.getOwner = function (task) {
         if (!task) return;
         var owner = $scope.getUserById(task.owner);
         if (!owner) return 'N/A';
         return owner;
     };
-    $scope.getProfileImage = function(user){
-        if(!user.services || !user.services.facebook)
+    $scope.getProfileImage = function (user) {
+        if (!user.services || !user.services.facebook)
             return "/images/profile.png";
         return "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?type=large";
     }
 
-    $scope.lastRoundDoneCount = function(){
+    $scope.lastRoundDoneCount = function () {
         return Tasks.find({status: 1}).count();
     }
 
-    $scope.lastRoundFailCount = function(){
+    $scope.lastRoundFailCount = function () {
         return Tasks.find({status: 0}).count();
     }
 
-}).filter('displayName', function () {
+}]).filter('displayName', function () {
     return function (user) {
         if (!user) return;
         if (user.profile && user.profile.name) return user.profile.name;
