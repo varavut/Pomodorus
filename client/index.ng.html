@@ -7,23 +7,27 @@
         <div class="Timer-countdown">{{times[0].value}}</div>
     </div>
 
+    <!-- TODO : if there's time, show statistics of lasted 25 mins tasks  -->
+    <!-- <h2>Last round {{lasted.done}} people stayed on task and {{lasted.fail}} did not.</h2> -->
+
     <!-- TODO:Make a scrollable list -->
-    <ul class="listC">
+    <ul class="Tasks">
         <!-- TODO: style li.success and li.fail -->
-        <li ng-repeat="item in tasks" ng-class="{'success':item.status == 1,'fail':item.status == 0}">
+        <li class="Tasks-task" ng-repeat="item in tasks" ng-class="{'Tasks-task--success':item.status == 1,'Tasks-task--fail':item.status == 0}">
             <!-- TODO: add Thumb up to each task -->
-            {{getOwner(item) | displayName}} : {{item.title}} / {{item.status ? 'This job s done':'Fail'}}
+            <!-- TODO: only show status after the work session is over and the user has said whether it's success -->
+            <span class="Tasks-taskOwner">{{getOwner(item) | displayName}}</span>
+            <span class="Tasks-taskTitle">{{item.title}}</span>
+            <span class="Tasks-taskStatus">{{item.status ? 'Stayed on task!':'Distracted'}}</span>
         </li>
     </ul>
-
-    <h2 ng-if="currentUser">Hello</h2>
 
     <blaze-template name="loginButtons" class="loginBox"></blaze-template>
 
     <div ng-show="currentUser">
 
         <div ng-show="times[0].isRunning && !mytask[0]">
-            <input placeholder="What todo" ng-model="todo">
+            <input placeholder="What will you work on?" ng-model="todo">
             <button ng-click="join()">Join now</button>
         </div>
 
@@ -32,18 +36,17 @@
         </div>
 
         <div ng-if="!times[0].isRunning && mytask[0]">
-            <h2>Break time ! so have you done your task ?</h2>
+            <h2>Did you stay focused on your task?</h2>
             <button ng-click="confirm(1)"> YES</button>
             <button ng-click="confirm(0)"> NO</button>
         </div>
         <div ng-if="!times[0].isRunning && !mytask[0]">
-            <h2>Break time ! take some coffee</h2>
+            <h2>Break time! Take a walk.</h2>
         </div>
 
     </div>
 
-    <!-- TODO : get statistic of lasted 25 mins tasks  -->
-    <h2>Last round {{lasted.done}} people stayed on task and {{lasted.fail}} did not.</h2>
+
 
 
 </div>
