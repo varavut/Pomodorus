@@ -25,6 +25,7 @@ var app = angular.module('pomodorus', ['angular-meteor']).controller('taskContro
             }
         }
     };
+
     $scope.addComment = function(task){
         if(!task.comments[Meteor.userId()]){
             task.comments[Meteor.userId()] = {user:Meteor.user(),comment:$scope.inputComments[task.owner]};

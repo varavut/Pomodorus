@@ -14,6 +14,7 @@
     <!-- TODO:Make a scrollable list -->
     <ul class="TasksList">
         <!-- TODO: style li.success and li.fail -->
+        <li ng-if="!tasks.length"> No any tasks here </li>
         <li class="TasksList-task" ng-repeat="item in tasks" ng-class="{'TasksList-task--success':item.status == 1,'TasksList-task--fail':item.status == 0}">
             <!-- TODO: add Thumb up to each task -->
             <span class="TasksList-taskOwner">{{getOwner(item) | displayName}}</span>
