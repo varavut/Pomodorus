@@ -7,6 +7,9 @@
 @import url(https://fonts.googleapis.com/css?family=Cutive+Mono);
 @import url(https://fonts.googleapis.com/css?family=Oswald:400,700,300);
 
+@font-mono: 'Cutive Mono', monospace;
+@font-sans: 'Oswald', 'Helvetica Neue', 'Segoe UI', sans-serif;
+
 // Components.
 @import 'timer.import.less';
 @import 'tasksList.import.less';
@@ -17,5 +20,5 @@ body {
   background-color: @color-light-gray;
   margin: 0;
   padding: 20px;
-  font-family: 'Oswald', 'Helvetica Neue', 'Segoe UI', sans-serif;
+  font-family: @font-sans;
 }

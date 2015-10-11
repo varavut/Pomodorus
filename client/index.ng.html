@@ -16,10 +16,8 @@
         <!-- TODO: style li.success and li.fail -->
         <li class="TasksList-task" ng-repeat="item in tasks" ng-class="{'TasksList-task--success':item.status == 1,'TasksList-task--fail':item.status == 0}">
             <!-- TODO: add Thumb up to each task -->
-            <!-- TODO: only show status after the work session is over and the user has said whether it's success -->
             <span class="TasksList-taskOwner">{{getOwner(item) | displayName}}</span>
             <span class="TasksList-taskTitle">{{item.title}}</span>
-            <span class="TasksList-taskStatus">{{item.status ? 'Stayed on task!':'Distracted'}}</span>
             <img class="TasksList-taskOwnerImage" src="{{getProfileImage(getOwner(item))}}">
         </li>
     </ul>
@@ -31,32 +29,34 @@
 
 
     <div class="Controls">
+        <div class="Controls-background"></div>
+        <div class="Controls-content">
 
-        <blaze-template name="loginButtons" class="Controls-login"></blaze-template>
+            <blaze-template name="loginButtons" class="Controls-login"></blaze-template>
 
-        <div ng-show="currentUser">
+            <div ng-show="currentUser">
 
-            <div ng-show="times[0].isRunning && !mytask[0]">
-                <input placeholder="What will you focus on?" ng-model="todo">
-                <button ng-click="join()">Join now</button>
+                <div ng-show="times[0].isRunning && !mytask[0]" class="Controls-taskForm">
+                    <input placeholder="What will you focus on?" ng-model="todo">
+                    <button ng-click="join()">Join now</button>
+                </div>
+
+                <div ng-show="mytask[0] && times[0].isRunning">
+                    Now focusing on: {{mytask[0].title}}
+                </div>
+
+                <div ng-if="!times[0].isRunning && mytask[0] && mytask[0].status==2">
+                    <h2>Did you stay focused on your task?</h2>
+                    <button ng-click="confirm(1)">Heck yes</button>
+                    <button ng-click="confirm(0)">Nope</button>
+                </div>
+
+                <div ng-if="!times[0].isRunning && !mytask[0]">
+                    <h2>Break time! Take a walk.</h2>
+                </div>
+
             </div>
-
-            <div ng-show="mytask[0] && times[0].isRunning">
-                Now focusing on: {{mytask[0].title}}
-            </div>
-
-            <div ng-if="!times[0].isRunning && mytask[0] && mytask[0].status==2">
-                <h2>Did you stay focused on your task?</h2>
-                <button ng-click="confirm(1)">Heck yes</button>
-                <button ng-click="confirm(0)">Nope</button>
-            </div>
-
-            <div ng-if="!times[0].isRunning && !mytask[0]">
-                <h2>Break time! Take a walk.</h2>
-            </div>
-
         </div>
-
     </div>
 
 
