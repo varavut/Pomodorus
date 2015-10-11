@@ -1,7 +1,7 @@
 angular.module('pomodorus', ['angular-meteor']).controller('taskController', function ($scope, $meteor, $rootScope) {
     $meteor.subscribe("tasks");
     $scope.tasks = $meteor.collection(Tasks);
-    $scope.lasted = {done:'x',fail:'x'}
+    $scope.lasted = {done:'0',fail:'0'}
     $scope.join = function () {
 
         if ($scope.mytask.length == 0) {

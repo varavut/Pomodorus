@@ -17,9 +17,10 @@
     </ul>
 
     <h2 ng-if="currentUser">Hello</h2>
-    <blaze-template name="loginButtons" class="loginBox"></blaze-template>
-    <div ng-show="currentUser">
 
+    <blaze-template name="loginButtons" class="loginBox"></blaze-template>
+
+    <div ng-show="currentUser">
 
         <div ng-show="times[0].isRunning && !mytask[0]">
             <input placeholder="What todo" ng-model="todo">
@@ -42,7 +43,7 @@
     </div>
 
     <!-- TODO : get statistic of lasted 25 mins tasks  -->
-    <h2> There are {{lasted.done}} tasks done and {{lasted.fail}}  fail in last 25 mins</h2>
+    <h2>Last round {{lasted.done}} people stayed on task and {{lasted.fail}} did not.</h2>
 
 
 </div>
