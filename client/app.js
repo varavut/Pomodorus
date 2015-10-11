@@ -1,5 +1,6 @@
 Accounts.ui.config({passwordSignupFields: "USERNAME_ONLY"});
-var app = angular.module('pomodorus', ['angular-meteor']).controller('taskController', ['$scope', '$meteor', function ($scope, $meteor) {
+var app = angular.module('pomodorus', ['angular-meteor'])
+  .controller('taskController',['$scope', '$meteor', function($scope, $meteor) {
     $meteor.subscribe("tasks");
     $scope.tasks = $meteor.collection(Tasks);
     $scope.inputComments = {};
@@ -7,13 +8,15 @@ var app = angular.module('pomodorus', ['angular-meteor']).controller('taskContro
         if ($scope.mytask.length == 0) {
             if ($scope.todo) {
                 $scope.tasks.push(
-                    {title: $scope.todo, owner: Meteor.userId(), createdAt: new Date(), status: 2, comments: {}, thumbs: 0});
+                    {title: $scope.todo, owner: Meteor.userId(),
+                    createdAt: new Date(), status: 2, comments: {}, thumbs: 0});
                 $scope.todo = '';} else {
                 alert('Input your task')}}};
     $scope.addComment = function (task) {
         var d = task.comments[Meteor.userId()];
         if (!d) {
-            d = {user: Meteor.user(), comment: $scope.inputComments[task.owner]};} else {
+            d = {user: Meteor.user(),
+              comment: $scope.inputComments[task.owner]};} else {
             d.user = Meteor.user();
             d.comment = $scope.inputComments[task.owner];}
     $scope.inputComments[task.owner] = '';}
