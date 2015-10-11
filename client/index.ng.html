@@ -19,6 +19,7 @@
             <span class="Tasks-taskOwner">{{getOwner(item) | displayName}}</span>
             <span class="Tasks-taskTitle">{{item.title}}</span>
             <span class="Tasks-taskStatus">{{item.status ? 'Stayed on task!':'Distracted'}}</span>
+            <img src="{{getProfileImage(getOwner(item))}}">
         </li>
     </ul>
 
@@ -35,8 +36,9 @@
             Your task is {{mytask[0].title}}
         </div>
 
-        <div ng-if="!times[0].isRunning && mytask[0]">
-            <h2>Did you stay focused on your task?</h2>
+
+        <div ng-if="!times[0].isRunning && mytask[0] && mytask[0].status==2">
+            <h2>Break time ! so have you done your task ?</h2>
             <button ng-click="confirm(1)"> YES</button>
             <button ng-click="confirm(0)"> NO</button>
         </div>
@@ -47,6 +49,10 @@
     </div>
 
 
+    <div ng-if="!times[0].isRunning">
+        <!-- TODO : get statistic of lasted 25 mins tasks  -->
+        <h2> There are {{lastRoundDoneCount()}} tasks done and {{lastRoundFailCount()}}  fail in last 25 mins</h2>
+    </div>
 
 
 </div>

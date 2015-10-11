@@ -16,5 +16,4 @@ Meteor.setInterval(function () {
         needToClearTask = true;
     }
     Times.update(currentTimeId, {$set: {value: moment.utc(diff).format('mm:ss'), isRunning: isRunning}});
-    //TODO: clear task list for new session
 }, 1000);
