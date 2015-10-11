@@ -19,7 +19,7 @@
             <span class="Tasks-taskOwner">{{getOwner(item) | displayName}}</span>
             <span class="Tasks-taskTitle">{{item.title}}</span>
             <span class="Tasks-taskStatus">{{item.status ? 'Stayed on task!':'Distracted'}}</span>
-            <img src="{{getProfileImage(getOwner(item))}}">
+            <img class="Tasks-taskOwnerImage" src="{{getProfileImage(getOwner(item))}}">
         </li>
     </ul>
 
