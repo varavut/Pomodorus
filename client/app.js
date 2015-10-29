@@ -20,6 +20,7 @@ angular.module('pomodorus', ['angular-meteor']).controller('taskController', fun
                         comments: []
                     }
                 );
+                $scope.todo = '';
             } else {
                 alert('Input your task')
             }
@@ -50,6 +51,11 @@ angular.module('pomodorus', ['angular-meteor']).controller('taskController', fun
         if (!owner) return 'N/A';
         return owner;
     };
+    $scope.getProfileImage = function(user){
+        if(!user.services || !user.services.facebook)
+            return "/images/profile.png";
+        return "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?type=large";
+    }
 
     /*
      structure of task
