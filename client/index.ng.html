@@ -20,7 +20,6 @@
     <blaze-template name="loginButtons" class="loginBox"></blaze-template>
     <div ng-show="currentUser">
 
-
         <div ng-show="times[0].isRunning && !mytask[0]">
             <input placeholder="What todo" ng-model="todo">
             <button ng-click="join()">Join now</button>
@@ -41,9 +40,10 @@
 
     </div>
 
-    <!-- TODO : get statistic of lasted 25 mins tasks  -->
-    <h2> There are {{lasted.done}} tasks done and {{lasted.fail}}  fail in last 25 mins</h2>
-
+    <div ng-if="!times[0].isRunning">
+        <!-- TODO : get statistic of lasted 25 mins tasks  -->
+        <h2> There are {{lastRoundDoneCount()}} tasks done and {{lastRoundFailCount()}}  fail in last 25 mins</h2>
+    </div>
 
 </div>
 

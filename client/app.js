@@ -1,7 +1,6 @@
 angular.module('pomodorus', ['angular-meteor']).controller('taskController', function ($scope, $meteor, $rootScope) {
     $meteor.subscribe("tasks");
     $scope.tasks = $meteor.collection(Tasks);
-    $scope.lasted = {done: 'x', fail: 'x'}
     $scope.join = function () {
         if ($scope.mytask.length == 0) {
             var name = 'unknow';
@@ -55,6 +54,18 @@ angular.module('pomodorus', ['angular-meteor']).controller('taskController', fun
         if(!user.services || !user.services.facebook)
             return "/images/profile.png";
         return "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?type=large";
+    }
+
+    $scope.lastRoundDoneCount = function(){
+        return Tasks.find({status: 1}).count();
+    }
+
+    $scope.lastRoundFailCount = function(){
+        return Tasks.find({status: 0}).count();
+    }
+
+    $scope.lastRoundTaskCount = function(){
+        return Tasks.find({}).count();
     }
 
     /*
